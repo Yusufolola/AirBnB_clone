@@ -4,6 +4,7 @@
 
 from uuid import uuid4
 from datetime import datetime
+from __init__ import storage
 
 class BaseModel:
     """this defines all common attributes and methods for other classes"""
@@ -33,7 +34,7 @@ class BaseModel:
         return f"({[self.__class__.__name__]} {(self.id)} {self.__dict__})"
 
         
-    def save(self):
+    def __init__ save(self):
         """updates the last modified time of the attribute"""
 
         self.updated_at = datetime.now()

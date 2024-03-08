@@ -10,7 +10,11 @@ import os
 class FileStorage:
     """this serializes instances to a Json file and deserializes JSON file to instances"""
 
+<<<<<<< HEAD
     __file_path = "file.json"
+=======
+    __file_path = 'file.json'
+>>>>>>> 67846aa7c7c77f8e3ebeeaacddea78f0b72d8e5b
     __objects = {}
 
     def all(self):
@@ -20,6 +24,7 @@ class FileStorage:
         returns (self.__objects)
 
     def new(self, obj):
+<<<<<<< HEAD
        # setattr
         """
         Custom method sets in __objects 
@@ -48,5 +53,20 @@ class FileStorage:
                 class_obj = value.get('__class__')
                 if class_obj in models.dict_class:
                     self.__objects[key] = models.dict_class[class_obj](**value)
+=======
+        for key, value in obj:
+            setattr(self ,key ,value)
+
+    def save(self):
+        with open(__file_path, 'w') as f:
+            json.dump(self.__objects, f)
+
+    def reload(self):
+        if __file_path:
+            with open(__file_path, 'r') as f:
+                return json.load(f)
+        else:
+            pass
+>>>>>>> 67846aa7c7c77f8e3ebeeaacddea78f0b72d8e5b
 
 

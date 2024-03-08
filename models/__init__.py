@@ -10,6 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+<<<<<<< HEAD
 dict_class = {'BaseModel': BaseModel,
               'User': User,
               'Place': Place,
@@ -17,5 +18,8 @@ dict_class = {'BaseModel': BaseModel,
               'City': City,
               'Amenity': Amenity,
               'Review': Review}
+=======
+from engine import file_storage
+>>>>>>> 67846aa7c7c77f8e3ebeeaacddea78f0b72d8e5b
 storage = self.FileStorage()
 storage.reload()
