@@ -4,7 +4,11 @@
 
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
+    """
+    Class HBNB interpreter cmd
+    """
     prompt = "(hbnb)"
 
     def do_EOF(self, line):
