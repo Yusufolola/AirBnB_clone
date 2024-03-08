@@ -8,10 +8,24 @@ from datetime import datetime
 class BaseModel:
     """this defines all common attributes and methods for other classes"""
 
+    def __init__(self, *args, **kwargs):
 
-    id = str(uuid4())
-    created_at = datetime.now()
-    updated_at = datetime.now()
+        if kwargs:
+            format = '%Y-%m-%dT%H:%M:%S.%f'
+            if kwargs['__class__'] in kwargs:
+                del kwargs['__class__']
+            if kwargs['created_at'] in kwargs:
+                kwargs['created_at'] = datetime.strptime(kwargs
+                        ['created_at'],format) 
+            if kwargs['updated_at'] in kwargs:
+                kwargs['updated_at'] = datetime.strptime(kwargs
+                                                ['updated_at'],format)
+            for keys, value in kwargs.items():
+                setattr (self, key , value)
+        else:
+            id = str(uuid4())
+            created_at = datetime.now()
+            updated_at = datetime.now()
 
     def __str__(self):
         """prints human readable description"""
@@ -29,7 +43,7 @@ class BaseModel:
 
         obj_dict = self.__dict__.copy()
         obj_dict["__class__"] = self.__class__.__name__
-        obj_dict['created_a'] = self.created_at.isoformat()
+        obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.created_at.isoformat()
         return obj_dict
 
