@@ -27,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         if len(arg) == 0:
-            print(" ** class name missing **")
+            print("** class name missing **")
         elif arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
@@ -35,6 +35,41 @@ class HBNBCommand(cmd.Cmd):
             new_instance = instance()
             new_instance.save()
             print("new_instance.id")
+
+    def do_show(self, arg):
+        if arg is None or arg == "":
+             print("** class name missing **")
+        if arg[0] not in self.classes:
+            print("** class doesn't exist **")
+        if arg[1] == None or arg == "":
+             print("** instance id missing **")
+        else:
+            key = "{}.{}",format(arg[0], arg[1])
+            if key not in models.storage.all():
+                print("** no instance found **")
+            else:
+                print(models.storage.all()[key])
+
+
+
+
+    def do_destroy(self, arg):
+		if arg is None or arg == "":
+             print("** class name missing **")
+        if arg[0] not in self.classes:
+            print("** class doesn't exist **")
+        if arg[1] == None or arg == "":
+             print("** instance id missing **")
+        else:
+            key = "{}.{}",format(arg[0], arg[1])
+            if key not in models.storage.all():
+                print("** no instance found **")
+            else:
+                del model.storage.all()[key]
+                models.storage.save()
+
+
+
 
 
 
